@@ -1,0 +1,20 @@
+{
+  "result": [
+    {
+      "IsDimmer": true,
+      "Name": "Switch 1",
+      "SubType": "X10",
+      "Type": "Lighting 1",
+      "idx": "1"
+    },
+    {
+      "IsDimmer": false,
+      "Name": "Switch 2",
+      "SubType": "X10",
+      "Type": "Lighting 1",
+      "idx": "2"
+    }
+  ],
+  "status": "OK",
+  "title": "GetLightSwitches"
+}
