@@ -1,4 +1,4 @@
-# Domoticz [![Build Status](https://semaphoreci.com/api/v1/projects/e1ada587-a66a-45d8-9d70-dae6e4c1622e/379316/badge.png)](https://semaphoreci.com/jankeesvw/domoticz)      
+# Domoticz [![Circle CI](https://circleci.com/gh/jankeesvw/domoticz.svg?style=svg)](https://circleci.com/gh/jankeesvw/domoticz)
 
 Manage your Domoticz server from Ruby
 
