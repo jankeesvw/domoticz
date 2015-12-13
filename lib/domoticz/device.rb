@@ -1,10 +1,6 @@
 module Domoticz
   class Device
     attr_accessor :idx
-    attr_accessor :dimmer
-    attr_accessor :name
-    attr_accessor :subtype
-    attr_accessor :type
     attr_accessor :data
 
     def on!
@@ -19,6 +15,21 @@ module Domoticz
       Domoticz.perform_api_request("type=command&param=switchlight&idx=#{idx}&switchcmd=Toggle")
     end
 
+    def dimmer
+      isDimmer
+    end
+
+    def method_missing(method_sym, *arguments, &block)
+      hash = Hash[@data.map { |k, v| [k.downcase, v] }]
+      key = method_sym.to_s.downcase
+
+      if hash.has_key?(key)
+        hash[key]
+      else
+        super
+      end
+    end
+
     def self.all
       Domoticz.perform_api_request("type=devices&filter=all&used=true")["result"].map do |json|
         Device.new_from_json(json)
@@ -28,11 +39,7 @@ module Domoticz
     def self.new_from_json(json)
       device = self.new
       device.data = json
-      device.name = json["Name"]
-      device.dimmer = json["IsDimmer"]
       device.idx = json["idx"]
-      device.type = json["Type"]
-      device.subtype = json["SubType"]
       device
     end
   end
