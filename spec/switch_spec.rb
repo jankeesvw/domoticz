@@ -37,4 +37,48 @@ describe Domoticz::Switch do
     switch.idx = "8"
     switch.toggle!
   end
+
+  it "gets the raw json data" do
+    stub_server_with_fixture(params: "type=devices&filter=all&used=true", fixture: "temperature_device.json")
+
+    switches = Domoticz::Switch.all
+    expect(switches.first.data).to eq ({
+      "AddjMulti" => 1.0,
+      "AddjMulti2" => 1.0,
+      "AddjValue" => 0.0,
+      "AddjValue2" => 0.0,
+      "BatteryLevel" => 100,
+      "CustomImage" => 0,
+      "Data" => "20.6 C, 45 %",
+      "Description" => "",
+      "DewPoint" => "8.25",
+      "Favorite" => 1,
+      "HardwareID" => 3,
+      "HardwareName" => "razberry",
+      "HardwareType" => "OpenZWave USB",
+      "HardwareTypeVal" => 21,
+      "HaveTimeout" => false,
+      "Humidity" => 45,
+      "HumidityStatus" => "Comfortable",
+      "ID" => "0601",
+      "LastUpdate" => "2015-12-13 14:02:47",
+      "Name" => "Woonkamer",
+      "Notifications" => "false",
+      "PlanID" => "5",
+      "PlanIDs" => [5],
+      "Protected" => false,
+      "ShowNotifications" => true,
+      "SignalLevel" => "-",
+      "SubType" => "WTGR800",
+      "Temp" => 20.6,
+      "Timers" => "false",
+      "Type" => "Temp + Humidity",
+      "TypeImg" => "temperature",
+      "Unit" => 0,
+      "Used" => 1,
+      "XOffset" => "185",
+      "YOffset" => "592",
+      "idx" => "47"
+    })
+  end
 end

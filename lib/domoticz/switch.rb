@@ -5,6 +5,7 @@ module Domoticz
     attr_accessor :name
     attr_accessor :subtype
     attr_accessor :type
+    attr_accessor :data
 
     def on!
       Domoticz.perform_api_request("type=command&param=switchlight&idx=#{idx}&switchcmd=On")
@@ -26,6 +27,7 @@ module Domoticz
 
     def self.new_from_json(json)
       switch = self.new
+      switch.data = json
       switch.name = json["Name"]
       switch.dimmer = json["IsDimmer"]
       switch.idx = json["idx"]
