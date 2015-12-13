@@ -51,6 +51,16 @@ describe Domoticz::Device do
     switch.toggle!
   end
 
+  it "tells us how old this data point is" do
+    # "LastUpdate": "2015-12-13 14:02:47",
+    stub_server_with_fixture(params: "type=devices&filter=all&used=true", fixture: "temperature_device.json")
+
+    Timecop.freeze(2015, 12, 13, 14, 2, 51)
+
+    device = Domoticz::Device.find_by_id(47)
+    expect(device.seconds_since_update).to eq 4
+  end
+
   it "gets the raw json data" do
     stub_server_with_fixture(params: "type=devices&filter=all&used=true", fixture: "temperature_device.json")
 

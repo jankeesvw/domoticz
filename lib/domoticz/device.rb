@@ -3,6 +3,10 @@ module Domoticz
     attr_accessor :idx
     attr_accessor :data
 
+    def seconds_since_update
+      Time.now - Time.parse(lastupdate)
+    end
+
     def on!
       Domoticz.perform_api_request("type=command&param=switchlight&idx=#{idx}&switchcmd=On")
     end
