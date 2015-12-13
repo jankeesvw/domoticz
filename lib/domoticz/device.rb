@@ -15,6 +15,10 @@ module Domoticz
       Domoticz.perform_api_request("type=command&param=switchlight&idx=#{idx}&switchcmd=Toggle")
     end
 
+    def temperature
+      temp
+    end
+
     def dimmer
       isDimmer
     end
