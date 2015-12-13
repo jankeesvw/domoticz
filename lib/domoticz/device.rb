@@ -1,5 +1,5 @@
 module Domoticz
-  class Switch
+  class Device
     attr_accessor :idx
     attr_accessor :dimmer
     attr_accessor :name
@@ -21,19 +21,19 @@ module Domoticz
 
     def self.all
       Domoticz.perform_api_request("type=devices&filter=all&used=true")["result"].map do |json|
-        Switch.new_from_json(json)
+        Device.new_from_json(json)
       end
     end
 
     def self.new_from_json(json)
-      switch = self.new
-      switch.data = json
-      switch.name = json["Name"]
-      switch.dimmer = json["IsDimmer"]
-      switch.idx = json["idx"]
-      switch.type = json["Type"]
-      switch.subtype = json["SubType"]
-      switch
+      device = self.new
+      device.data = json
+      device.name = json["Name"]
+      device.dimmer = json["IsDimmer"]
+      device.idx = json["idx"]
+      device.type = json["Type"]
+      device.subtype = json["SubType"]
+      device
     end
   end
 end

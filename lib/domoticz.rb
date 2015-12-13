@@ -1,6 +1,6 @@
 require "domoticz/version"
 require "domoticz/configuration"
-require "domoticz/switch"
+require "domoticz/device"
 require "json"
 
 module Domoticz
