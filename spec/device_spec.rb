@@ -14,6 +14,19 @@ describe Domoticz::Device do
     expect(devices.first.subtype).to eq "X10"
   end
 
+  it "gets a specific device" do
+    stub_server_with_fixture(params: "type=devices&filter=all&used=true", fixture: "switches.json")
+
+    device = Domoticz::Device.find_by_id(1)
+    expect(device).to be_a Domoticz::Device
+
+    expect(device.name).to eq "Switch 1"
+    expect(device.dimmer?).to be_truthy
+    expect(device.idx).to eq "1"
+    expect(device.type).to eq "Lighting 1"
+    expect(device.subtype).to eq "X10"
+  end
+
   it "turns on a switch" do
     stub_server_with_fixture(params: "type=command&param=switchlight&idx=8&switchcmd=On", fixture: "switch_turn_on.json", required: true)
 

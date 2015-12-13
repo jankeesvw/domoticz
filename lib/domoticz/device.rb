@@ -34,6 +34,10 @@ module Domoticz
       end
     end
 
+    def self.find_by_id(id)
+      all.find { |d| d.idx == id.to_s }
+    end
+
     def self.all
       Domoticz.perform_api_request("type=devices&filter=all&used=true")["result"].map do |json|
         Device.new_from_json(json)
