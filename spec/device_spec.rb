@@ -8,7 +8,7 @@ describe Domoticz::Device do
     expect(devices.count).to eq 2
 
     expect(devices.first.name).to eq "Switch 1"
-    expect(devices.first.dimmer).to be_truthy
+    expect(devices.first.dimmer?).to be_truthy
     expect(devices.first.idx).to eq "1"
     expect(devices.first.type).to eq "Lighting 1"
     expect(devices.first.subtype).to eq "X10"

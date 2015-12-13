@@ -19,7 +19,7 @@ module Domoticz
       temp
     end
 
-    def dimmer
+    def dimmer?
       isDimmer
     end
 
