@@ -23,7 +23,7 @@ module Domoticz
     uri = URI(Domoticz.configuration.server + "json.htm?" + params)
     request = Net::HTTP::Get.new(uri)
     request.basic_auth(username, password) if username && password
-    response = Net::HTTP.start(uri.hostname, uri.port) { |http| http.request(request) }
+    response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: uri.scheme == "https") { |http| http.request(request) }
 
     JSON.parse(response.body)
   end
